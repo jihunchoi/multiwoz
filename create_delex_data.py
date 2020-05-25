@@ -265,14 +265,14 @@ def createDict(word_freqs):
 def loadData():
     if not os.path.exists("data/multi-woz"):
         os.makedirs("data/multi-woz")
-        dataset_url = "data/MultiWOZ_2.0.zip"
+        dataset_url = "data/MultiWOZ_2.1.zip"
         with ZipFile(dataset_url, 'r') as zip_ref:
             zip_ref.extractall("data/multi-woz")
             zip_ref.close()
-            shutil.copy('data/multi-woz/MULTIWOZ2 2/data.json', 'data/multi-woz/')
-            shutil.copy('data/multi-woz/MULTIWOZ2 2/valListFile.json', 'data/multi-woz/')
-            shutil.copy('data/multi-woz/MULTIWOZ2 2/testListFile.json', 'data/multi-woz/')
-            shutil.copy('data/multi-woz/MULTIWOZ2 2/dialogue_acts.json', 'data/multi-woz/')
+            shutil.copy('data/multi-woz/MultiWOZ_2.1/data.json', 'data/multi-woz/')
+            shutil.copy('data/multi-woz/MultiWOZ_2.1/valListFile.txt', 'data/multi-woz/')
+            shutil.copy('data/multi-woz/MultiWOZ_2.1/testListFile.txt', 'data/multi-woz/')
+            shutil.copy('data/multi-woz/MultiWOZ_2.1/system_acts.json', 'data/multi-woz/')
 
 
 def createDelexData():
@@ -293,7 +293,7 @@ def createDelexData():
     fin1 = file('data/multi-woz/data.json')
     data = json.load(fin1)
 
-    fin2 = file('data/multi-woz/dialogue_acts.json')
+    fin2 = file('data/multi-woz/system_acts.json')
     data2 = json.load(fin2)
 
     cnt = 10
@@ -346,13 +346,13 @@ def divideData(data):
     """Given test and validation sets, divide
     the data for three different sets"""
     testListFile = []
-    fin = file('data/multi-woz/testListFile.json')
+    fin = file('data/multi-woz/testListFile.txt')
     for line in fin:
         testListFile.append(line[:-1])
     fin.close()
 
     valListFile = []
-    fin = file('data/multi-woz/valListFile.json')
+    fin = file('data/multi-woz/valListFile.txt')
     for line in fin:
         valListFile.append(line[:-1])
     fin.close()
